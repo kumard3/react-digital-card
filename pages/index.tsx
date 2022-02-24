@@ -1,4 +1,7 @@
 /* eslint-disable @next/next/link-passhref */
+/* eslint-disable @next/next/no-unresolved-links */
+/* eslint-disable @react/no-unescaped-entities */
+
 import Link from "next/link";
 import * as React from "react";
 
@@ -76,9 +79,9 @@ export default function Home() {
             <div className="flex flex-col">
               <h1 className="text-2xl font-bold">Interests</h1>
               <div className="flex flex-wrap">
-                {data.map((n) => {
+                {data.map((n,index) => {
                   return (
-                    <button className="bg-slate-600 mx-2 my-1 py-2 px-4 text-lg rounded-lg">
+                    <button key={index} className="bg-slate-600 mx-2 my-1 py-2 px-4 text-lg rounded-lg">
                       {n.name}
                     </button>
                   );
