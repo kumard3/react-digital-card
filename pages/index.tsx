@@ -70,7 +70,7 @@ export default function Home() {
             <div>
               <h1 className="text-2xl font-bold ">About</h1>
               <p className="text-gray-300">
-                Photography It's my hoby and my love and before I knew it I've
+                Photography It s my hoby and my love and before I knew it I ve
                 realized that photography is my true passion . I find myself in.
                 creative portraits, darkside and dimensions, everything now
                 draws me to a deep feeling of connection to art.
