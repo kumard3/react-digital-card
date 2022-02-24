@@ -6,7 +6,8 @@ export default function Home() {
   const data = [
     {
       name: "Fashion",
-    },    {
+    },
+    {
       name: "Shooting",
     },
     {
@@ -25,7 +26,7 @@ export default function Home() {
       name: "HD",
     },
   ];
-  
+
   return (
     <div className="flex flex-col bg-black container text-white min-h-screen">
       <style jsx>{`
@@ -35,13 +36,25 @@ export default function Home() {
           opacity: 10;
           background-image: url("https://images.unsplash.com/photo-1625417026759-69162d7ded55?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80");
           background-color: black;
+          position: fixed;
+          top: 0;
+          overflow: scroll;
         }
       `}</style>
       <div className="bg-black/30">
-        <h1 className="font-bold text-4xl mt-3 p-4 text-center">
-          {" "}
-          @sour_moha{" "}
-        </h1>
+        <div className="flex justify-center items-center">
+          <div>
+            <img
+              src="https://source.unsplash.com/120x120/?portrait"
+              className="rounded-full h-[3.4rem] mt-3"
+              alt="Avatar"
+            />
+          </div>
+          <h1 className="font-bold text-4xl mt-3 p-4 text-center">
+            {" "}
+            @sour_moha{" "}
+          </h1>
+        </div>
         {/* <div className="">
         <img
         className="h-full opacity-60 "
@@ -63,15 +76,14 @@ export default function Home() {
             <div className="flex flex-col">
               <h1 className="text-2xl font-bold">Interests</h1>
               <div className="flex flex-wrap">
-
-                {data.map((n)=>{
-                  return(
+                {data.map((n) => {
+                  return (
                     <button className="bg-slate-600 mx-2 my-1 py-2 px-4 text-lg rounded-lg">
-{n.name}
+                      {n.name}
                     </button>
-                  )
+                  );
                 })}
-                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -80,4 +92,3 @@ export default function Home() {
   );
 }
 //Shooting Creativity Darkside HD Art Wallpapers
-
