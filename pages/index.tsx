@@ -1,25 +1,83 @@
 /* eslint-disable @next/next/link-passhref */
-import Link from 'next/link';
-import * as React from 'react';
+import Link from "next/link";
+import * as React from "react";
 
 export default function Home() {
+  const data = [
+    {
+      name: "Fashion",
+    },    {
+      name: "Shooting",
+    },
+    {
+      name: "Creativity",
+    },
+    {
+      name: "Darkside",
+    },
+    {
+      name: "Art",
+    },
+    {
+      name: "Wallpapers",
+    },
+    {
+      name: "HD",
+    },
+  ];
+  
   return (
-      <main className="flex justify-center items-center w-full h-full">
-        <section className='bg-white flex justify-center items-center w-full'>
-          <div className=' flex flex-col text-3xl justify-center font-bold items-center min-h-screen text-center'>
-            <h1 className='text-4xl'>Next.js + Tailwind CSS + TypeScript Starter</h1>
-            <p className='mt-2 text-xl text-gray-800'>
-              A starter for Next.js, Tailwind CSS, and TypeScript with Seo.
-            </p>
-            <p className='mt-[1rem] text-lg '>
-              <Link href='https://github.com/Cyphen12/tailwind-typescript-starter'>
-                <span className='bg-green-400 p-2  text-black/70 rounded font-bold shadow-xl '>
-                See the repository
-                </span>
-              </Link>
-            </p>
+    <div className="flex flex-col bg-black container text-white min-h-screen">
+      <style jsx>{`
+        .container {
+          background-repeat: no-repeat;
+          background-size: 100%;
+          opacity: 10;
+          background-image: url("https://images.unsplash.com/photo-1625417026759-69162d7ded55?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80");
+          background-color: black;
+        }
+      `}</style>
+      <div className="bg-black/30">
+        <h1 className="font-bold text-4xl mt-3 p-4 text-center">
+          {" "}
+          @sour_moha{" "}
+        </h1>
+        {/* <div className="">
+        <img
+        className="h-full opacity-60 "
+        src="https://images.unsplash.com/photo-1625417026759-69162d7ded55?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80"
+        />{" "}
+      </div> */}
+
+        <div className="rounded-t-[3rem] backdrop-blur-xl   bg-slate-700/30 h-[40rem] relative  top-[15rem] ">
+          <div className="p-5 flex flex-col mt-4">
+            <div>
+              <h1 className="text-2xl font-bold ">About</h1>
+              <p className="text-gray-300">
+                Photography It's my hoby and my love and before I knew it I've
+                realized that photography is my true passion . I find myself in.
+                creative portraits, darkside and dimensions, everything now
+                draws me to a deep feeling of connection to art.
+              </p>
+            </div>
+            <div className="flex flex-col">
+              <h1 className="text-2xl font-bold">Interests</h1>
+              <div className="flex flex-wrap">
+
+                {data.map((n)=>{
+                  return(
+                    <button className="bg-slate-600 mx-2 my-1 py-2 px-4 text-lg rounded-lg">
+{n.name}
+                    </button>
+                  )
+                })}
+                </div>
+            </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </div>
+    </div>
   );
 }
+//Shooting Creativity Darkside HD Art Wallpapers
+
