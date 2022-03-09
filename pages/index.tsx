@@ -1,48 +1,84 @@
-/* eslint-disable @next/next/link-passhref */
+import { PrismaClient } from "@prisma/client";
+import Head from "next/head";
+import { getSession, signIn, signOut } from "next-auth/react";
+import { useState } from "react";
+import DisplayProfile from "../components/DisplayProfile";
+import EditProfile from "../components/EditProfile";
+import Draft from "./create";
 
-import Link from "next/link";
-import * as React from "react";
-import {
-  getSession,
-  GetSessionParams,
-  signIn,
-  signOut,
-  useSession,
-} from "next-auth/react";
-import { GetServerSideProps } from "next";
-import { Session } from "next-auth";
-
-export default function Home() {
-  const { data: session, status } = useSession();
-
-
-  if (status === "authenticated") {
-    return <div className="bg-black min-h-screen text-white"><p>Signed in as {session.user.ema il}</p></div> 
-  }
+export default function Home({ session, profile }) {
+  const [editing, setEditing] = useState(false);
   return (
-    <div className="flex flex-col bg-black container text-white min-h-screen">
-      {!session && (
-        <>
-          Not signed in <br />
-          <button onClick={() => signIn()}>Sign in</button>
-        </>
-      )}
-      {session && (
-        <>
-          Signed in as {session.user.email} <br />
-          <button onClick={() => signOut()}>Sign out</button>
-        </>
-      )}
+    <div className="">
+      <Head>
+        <title>Business Card Application</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <>
+        {!session && (
+          <>
+            Not signed in <br />{" "}
+            <button onClick={() => signIn()}>Sign in</button>
+          </>
+        )}
+        {session && (
+          <>
+            Signed in as {session.user.email} <br />
+            <button onClick={() => signOut()}>Sign out</button>
+            {!profile && <Draft />}
+            {profile && !editing && (
+              <div className="flex flex-col justify-center">
+                <DisplayProfile profile={profile} />
+                <button
+                  className="bg-indigo-700 text-white rounded-md px-4 py-2 max-w-sm mx-auto hover:bg-indigo-600 mt-4"
+                  onClick={() => {
+                    setEditing(true);
+                  }}
+                >
+                  Edit Profile
+                </button>
+              </div>
+            )}
+            {profile && editing && (
+              `<EditProfile profile={profile} setEditing={setEditing} />`
+            )}
+          </>
+        )}
+      </>
     </div>
   );
 }
-//Shooting Creativity Darkside HD Art Wallpapers
-export const getServerSideProps: GetServerSideProps<{
-  session: Session | null;
-}> = async (context) => {
+
+export const getServerSideProps = async (context) => {
+  const prisma = new PrismaClient();
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      props: {
+        session: null,
+      },
+    };
+  }
+
+  const profile = await prisma.profile.findUnique({
+    where: { email: session.user.email },
+    select: {
+      email: true,
+      facebook: true,
+      instagram: true,
+      phone: true,
+      bio: true,
+      slug: true,
+      name: true,
+      twitter: true,
+    },
+  });
+
   return {
     props: {
-      session: await getSession(context),
+      session,
+      profile,
     },
   };
 };
