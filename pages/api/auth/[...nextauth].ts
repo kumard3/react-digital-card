@@ -9,8 +9,8 @@ export default NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
-      clientId: '814919103638-bab10hg1vgcu6cekr40ck5hvi79geksi.apps.googleusercontent.com',
-      clientSecret: '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',
+      clientId: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
 })
