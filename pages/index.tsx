@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import Head from "next/head";
 import { getSession, signIn, signOut } from "next-auth/react";
 import { useState } from "react";
+
 import DisplayProfile from "../components/DisplayProfile";
 import EditProfile from "../components/EditProfile";
 import Draft from "./create";
@@ -17,8 +18,7 @@ export default function Home({ session, profile }) {
       <>
         {!session && (
           <>
-            Not signed in <br />{" "}
-            <button onClick={() => signIn()}>Sign in</button>
+            Not signed in <br /> <button onClick={() => signIn()}>Sign in</button>
           </>
         )}
         {session && (
@@ -33,15 +33,12 @@ export default function Home({ session, profile }) {
                   className="bg-indigo-700 text-white rounded-md px-4 py-2 max-w-sm mx-auto hover:bg-indigo-600 mt-4"
                   onClick={() => {
                     setEditing(true);
-                  }}
-                >
+                  }}>
                   Edit Profile
                 </button>
               </div>
             )}
-            {profile && editing && (
-              `<EditProfile profile={profile} setEditing={setEditing} />`
-            )}
+            {profile && editing && <EditProfile profile={profile} setEditing={setEditing} />}
           </>
         )}
       </>

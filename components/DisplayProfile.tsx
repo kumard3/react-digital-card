@@ -1,5 +1,4 @@
-export default function DisplayProfile({ profile }) {
-  console.log(profile);
+export default function DisplayProfile({ profile }: any) {
   return (
     <div className="text-gray-800 text-lg text-left max-w-2xl mx-auto mt-10">
       <div className="mb-10">

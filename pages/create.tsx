@@ -1,54 +1,37 @@
+import axios, { AxiosRequestConfig } from "axios";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 import { useForm } from "react-hook-form";
 
 const Draft: React.FC = () => {
-  const [use, setUser] = useState();
   const { register, handleSubmit } = useForm();
-
-  const onSubmitForm = async ({
-    bio,
-    email,
-    facebook,
-    instagram,
-    name,
-    phone,
-    slug,
-    twitter,
-  }:any) => {
-
-    try {
-      await fetch(`http://localhost:3000/api/post`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          bio,
-          email,
-          facebook,
-          instagram,
-          name,
-          phone,
-          slug,
-          twitter,
-        }),
-      });
-    } catch (error) {
-      console.error(error);
+  const router = useRouter();
+  const onSubmitForm = async (values) => {
+    const config: AxiosRequestConfig = {
+      url: "/api/createprofile",
+      data: values,
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const res = await axios(config);
+    if (res.status === 200) {
+      router.reload();
     }
   };
-  console.log(use);
-
-  /**
-bio: "see"
-facebook: "edfefeaf"
-instagram: "ders"
-name: "Kumar Deepanshu"
-phone: "08873630016"
-slug: "test"
-twitter: "fvevef" 
-
-
-**/
+  // const onSubmitForm = async (values: any) => {
+  //   try {
+  //   const config =   await fetch(`http://localhost:3000/api/createprofile`, {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(values),
+  //     });
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   return (
     <div className="w-full max-w-2xl mx-auto">

@@ -18,11 +18,13 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       name,
       bio,
       phone,
+      //@ts-ignore
       email: session.user.email,
       facebook,
       slug,
       twitter,
       instagram,
+      //@ts-ignore
       user: { connect: { email: session.user.email } },
     },
   });
