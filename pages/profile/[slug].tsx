@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-export default function ProfilePage({ profile }) {
+export default function ProfilePage({ profile }:any) {
   const router = useRouter();
 
   if (router.isFallback) {
